@@ -1,0 +1,15 @@
+{
+  "name": "crypto-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "decrypt.js",
+  "scripts": {
+    "des": "node examples/des-block-implementation/implementation.js",
+    "des:node": "node examples/des-block-implementation/node-version.js",
+    "repl": "node -r ./scripts/repl.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
