@@ -6,7 +6,6 @@ function gcd(a, b) {
     // Now oldB === newB * q + r (division algorithm)
     ;[A, B, C, D] = [C, D, A - C * q, B - D * q]
     // Now newB === A * a + B * b, r === C * a + D * b (Bezout coefficients)
-    console.count()
   }
   return { gcd: b, coefA: A, coefB: B }
 }
