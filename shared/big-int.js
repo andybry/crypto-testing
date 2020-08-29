@@ -1,4 +1,7 @@
-function gcd(a, b) {
+/**
+ * Extended Euclidean Algorithm
+ */
+function eea(a, b) {
   // initial state corresponds to a === b * 0 + a
   let [q, r, A, B, C, D] = [0n, a, 0n, 1n, 1n, 0n]
   while (r !== 0n) {
@@ -10,4 +13,4 @@ function gcd(a, b) {
   return { gcd: b, coefA: A, coefB: B }
 }
 
-module.exports = { gcd }
+module.exports = { eea }
