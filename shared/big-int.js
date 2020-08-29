@@ -10,7 +10,8 @@ function eea(a, b) {
     ;[A, B, C, D] = [C, D, A - C * q, B - D * q]
     // Now newB === A * a + B * b, r === C * a + D * b (Bezout coefficients)
   }
-  return { gcd: b, coefA: A, coefB: B }
+  const sign = b < 0 ? -1n : 1n
+  return { gcd: sign * b, coefA: sign * A, coefB: sign * B }
 }
 
 module.exports = { eea }
