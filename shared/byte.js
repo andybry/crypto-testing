@@ -26,9 +26,14 @@ function bytesToHex(bytes) {
   return bitsToHex(bytesToBits(bytes))
 }
 
+function bytesToBigInt(bytes) {
+  return BigInt('0x' + bytesToHex(bytes))
+}
+
 module.exports = {
   bytesToBits,
   byteToBits,
   bytesToStr,
-  bytesToHex
+  bytesToHex,
+  bytesToBigInt
 }
