@@ -90,5 +90,8 @@ module.exports = {
   },
   multiplyGBy(k) {
     return curve.multiplyBy(p, A, G, k)
+  },
+  pointsByX(x) {
+    return curve.pointsByX(p, A, B, x)
   }
 }

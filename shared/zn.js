@@ -1,4 +1,5 @@
 const { eea } = require('./big-int')
+const { randomBigInt } = require('./random')
 
 function normalize(p, n) {
   const r = n % p
@@ -30,10 +31,37 @@ function power(p, b, e) {
   return result
 }
 
+function isSquare(p, n) {
+  // Euler's Criterion
+  return zn.power(p, n, (p - 1n) / 2n) === 1n
+}
+
+/**
+ * assumes that a root exists.
+ * If a root does not exist it returns [0, p]
+ *
+ * returns both roots, even root first
+ */
+function roots(p, n) {
+  const fp2 = require('./fp2')
+  // Cipolla's algorithm
+  let a, N
+  do {
+    a = randomBigInt(p)
+    N = add(p, multiply(p, a, a), -n)
+  } while (isSquare(p, N))
+  const root = fp2.power(p, N, [1n, a], (p + 1n) / 2n)[1]
+  const other = p - root
+  const isOdd = (root & 1n) === 1n
+  return isOdd ? [other, root] : [root, other]
+}
+
 module.exports = {
   normalize,
   add,
   multiply,
   inverse,
   power,
+  isSquare,
+  roots,
 }
