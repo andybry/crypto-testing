@@ -33,7 +33,7 @@ function power(p, b, e) {
 
 function isSquare(p, n) {
   // Euler's Criterion
-  return zn.power(p, n, (p - 1n) / 2n) === 1n
+  return power(p, n, (p - 1n) / 2n) === 1n
 }
 
 /**
