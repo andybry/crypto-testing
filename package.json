@@ -9,12 +9,15 @@
   "scripts": {
     "des": "node examples/des-block-implementation/implementation.js",
     "des:node": "node examples/des-block-implementation/node-version.js",
-    "repl": "node -r ./scripts/repl.js"
+    "repl": "node -r ./scripts/repl.js",
+    "test": "mocha --recursive"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "ethereumjs-util": "^7.0.4"
+    "chai": "^4.2.0",
+    "ethereumjs-util": "^7.0.4",
+    "mocha": "^8.1.3"
   }
 }

@@ -1,3 +1,12 @@
+function bigIntToBits(n) {
+  const binaryStr = n.toString(2)
+  const byteLength = Math.ceil(binaryStr.length / 8)
+  return binaryStr
+    .padStart(8 * byteLength, 0)
+    .split('')
+    .map(Number)
+}
+
 /**
  * Extended Euclidean Algorithm
  */
@@ -14,4 +23,4 @@ function eea(a, b) {
   return { gcd: sign * b, coefA: sign * A, coefB: sign * B }
 }
 
-module.exports = { eea }
+module.exports = { eea, bigIntToBits }
