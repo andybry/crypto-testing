@@ -3,6 +3,7 @@ const bit = require('../../shared/bit')
 
 const _855_10BITS = [1, 1, 0, 1, 0, 1, 0, 1, 1, 1]
 const _213_01BYTE = [1, 1, 0, 1, 0, 1, 0, 1]
+const _002_01BYTE = [0, 0, 0, 0, 0, 0, 1, 0]
 const _005_01BYTE = [0, 0, 0, 0, 0, 1, 0, 1]
 const _005_4BITS = [0, 1, 0, 1]
 const _113_01BYTE = [0, 1, 1, 1, 0, 0, 0, 1]
@@ -104,6 +105,10 @@ describe('shared/bit', () => {
           ..._005_4BITS,
         ])
       })
+    })
+
+    it('should pad the hex to two hex per byte', () => {
+      assert.deepEqual(bit.bitsToHex([..._005_01BYTE, ..._002_01BYTE]), '0502')
     })
   })
 

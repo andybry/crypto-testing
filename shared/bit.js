@@ -72,7 +72,7 @@ function bitsToHex(bits) {
   const bytes = bitsToBytes(bits)
   let ret = ''
   for (const byte of bytes) {
-    ret += byte.toString(16)
+    ret += byte.toString(16).padStart(2, '0')
   }
   return ret
 }
