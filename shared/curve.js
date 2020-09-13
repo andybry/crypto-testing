@@ -2,6 +2,33 @@ const zn = require('./zn')
 
 const ZERO = 'ZERO'
 
+/**
+ * calculates y^2
+ */
+function lhs(p, y) {
+  return zn.multiply(p, y, y)
+}
+
+/**
+ * calculates x^3 + A * x + B
+ */
+function rhs(p, A, B, x) {
+  const xCubed = zn.power(p, x, 3n)
+  const xtimesA = zn.multiply(p, x, A)
+  return zn.add(p, zn.add(p, xCubed, xtimesA), B)
+}
+
+function isOnCurve(p, A, B, p1) {
+  return lhs(p, p1[1]) === rhs(p, A, B, p1[0])
+}
+
+/**
+ * calculates B so that the given point is on the curve
+ */
+function calcB(p, A, p1) {
+  return curve.lhs(p, p1[1]) - curve.rhs(p, A, 0n, p1[0])
+}
+
 function add(p, A, p1, p2) {
   if (p1 === ZERO) return p2
   if (p2 === ZERO) return p1
@@ -24,7 +51,7 @@ function add(p, A, p1, p2) {
 }
 
 function multiplyBy(p, A, p1, k) {
-  let [remaining, result, twos] = [zn.normalize(p, k), ZERO, p1]
+  let [remaining, result, twos] = [k, ZERO, p1]
   while (remaining !== 0n) {
     ;[remaining, result, twos] =
       remaining % 2n === 0n
@@ -39,17 +66,20 @@ function multiplyBy(p, A, p1, k) {
  * (not necessarily in the cyclic subgroup)
  */
 function pointsByX(p, A, B, x) {
-  const xCubed = zn.power(p, x, 3n)
-  const xtimesA = zn.multiply(p, x, A)
-  const rhs = zn.add(p, zn.add(p, xCubed, xtimesA), B)
-  if (!zn.isSquare(p, rhs)) return []
-  const ys = zn.roots(p, rhs)
+  const right = rhs(p, A, B, x)
+  if (right === 0n) return [[x, 0n]]
+  if (!zn.isSquare(p, right)) return []
+  const ys = zn.roots(p, right)
   return [[x, ys[0]], [x, ys[1]]]
 }
 
 module.exports = {
   ZERO,
+  lhs,
+  rhs,
+  calcB,
+  isOnCurve,
   add,
   multiplyBy,
-  pointsByX
+  pointsByX,
 }
