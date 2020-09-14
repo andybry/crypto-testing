@@ -1,7 +1,7 @@
 const zn = require('./zn')
 
 function add(p, a, b) {
-  return [zn.add(p, a[0] + b[0]), zn.add(p, a[1] + b[1])]
+  return [zn.add(p, a[0], b[0]), zn.add(p, a[1], b[1])]
 }
 
 /**
