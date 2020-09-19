@@ -1,4 +1,4 @@
-const { bitsToStr, bitsToHex } = require("./bit")
+const { bitsToStr, bitsToHex } = require('./bit')
 
 function byteToBits(byte, length = 8) {
   const ret = []
@@ -30,10 +30,16 @@ function bytesToBigInt(bytes) {
   return BigInt('0x' + bytesToHex(bytes))
 }
 
+const bytesToPoint = (bytes) => {
+  const mid = bytes.length / 2
+  return [bytesToBigInt(bytes.slice(0, mid)), bytesToBigInt(bytes.slice(mid))]
+}
+
 module.exports = {
   bytesToBits,
   byteToBits,
   bytesToStr,
   bytesToHex,
-  bytesToBigInt
+  bytesToBigInt,
+  bytesToPoint
 }
