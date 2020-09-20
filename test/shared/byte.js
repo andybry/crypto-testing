@@ -7,6 +7,8 @@ const _000_1BYTE = [0, 0, 0, 0, 0, 0, 0, 0]
 const a = 97
 const r = 114
 const b = 98
+const _855_IN_BYTES = [3, 87]
+const _13671_IN_BYTES = [53, 103]
 
 describe('shared/byte', () => {
   describe('byteToBits', () => {
@@ -43,6 +45,15 @@ describe('shared/byte', () => {
   describe('bytesToBigInt', () => {
     it('should convert an array of bytes to the big int', () => {
       assert.equal(byte.bytesToBigInt([89, 2, 241]), 5833457)
+    })
+  })
+
+  describe('bytesToPoint', () => {
+    it('should convert an array of bytes to a point', () => {
+      assert.deepEqual(
+        byte.bytesToPoint([..._855_IN_BYTES, ..._13671_IN_BYTES]),
+        [855n, 13671n]
+      )
     })
   })
 })

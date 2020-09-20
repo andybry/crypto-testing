@@ -16,8 +16,7 @@ function generateKeys() {
  * as q
  *
  */
-function sign(private, x) {
-  const ephemeralKey = randomBigInt(secp256k1.q)
+function sign(private, x, ephemeralKey = randomBigInt(secp256k1.q)) {
   const R = secp256k1.multiplyGBy(ephemeralKey)
   const r = zn.normalize(q, R[0])
   const s = zn.normalize(q, (x + private * r) * zn.inverse(q, ephemeralKey))
@@ -40,10 +39,10 @@ function verify(public, x, { r, s }) {
  * curve points corresponding to  the `r` parameter as follows:
  *  1. smallest x-coords and then
  *  2. even y-coord before odd y-coords
- * 
+ *
  * recovers all points (not necessarily just the ones in the
  * cyclic subgroup used to compute the signature)
- * 
+ *
  * In secp256k1 the cyclic subgroup and the curve are the same
  * thing.
  */
@@ -75,5 +74,5 @@ module.exports = {
   generateKeys,
   sign,
   verify,
-  recover
+  recover,
 }

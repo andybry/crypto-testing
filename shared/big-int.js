@@ -44,9 +44,9 @@ function eea(a, b) {
 }
 
 module.exports = {
-  eea,
   bigIntToBits,
   bigIntToBytes,
   bigIntToBuffer,
   bigIntToHex,
+  eea,
 }
