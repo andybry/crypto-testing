@@ -1,19 +1,25 @@
 {
   "name": "@andybry/crypto-testing",
+  "repository": "github:andybry/crypto-testing",
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.1.0",
+  "description": "Utilities for expermenting with cryptography",
   "main": "decrypt.js",
   "scripts": {
     "des": "node examples/des-block-implementation/implementation.js",
     "des:node": "node examples/des-block-implementation/node-version.js",
+    "ecdsa": "node examples/ecdsa.js",
+    "ecdsa:vs-ethereum": "node examples/ecdsa-recovery-vs-ethereums.js",
     "repl": "node -r ./scripts/repl.js",
     "test": "mocha --recursive"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "ecdsa", "des", "cryptography", "secp256k1", "bits", "bytes", "curves",
+    "elliptic curves", "rings", "fields"
+  ],
+  "author": "Andy Bryant <arbryant101@gmail.com> (https://github.com/andybry)",
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.2.0",
