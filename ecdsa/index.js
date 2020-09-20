@@ -15,6 +15,9 @@ function generateKeys() {
  * message x is assumed to be a hash of the same bit length
  * as q
  *
+ * Passing in an ephemeralKey is only for testing purposes.
+ * Reusing an ephemeralKey is very insecure and will allow the private
+ * key to be recovered
  */
 function sign(private, x, ephemeralKey = randomBigInt(secp256k1.q)) {
   const R = secp256k1.multiplyGBy(ephemeralKey)
